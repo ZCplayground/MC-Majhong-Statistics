@@ -119,6 +119,8 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataProcess.h" />
+    <ClInclude Include="InputTest.h" />
     <ClInclude Include="Mahjong.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

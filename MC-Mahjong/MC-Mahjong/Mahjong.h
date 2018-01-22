@@ -107,7 +107,8 @@ void Mahjong::Personal_Game_Statistics()
 {
 	// 4. 遍历一局麻将中的四个人，
 	// 在 ID.txt 后追加比赛信息  
-	// 输出格式样例： 4位 changc(-40.0) Haruhi(+44.0) 學習個煎包麻將(-13.0) 小手冰凉(+9.0)
+	// 输出格式样例： 4位 changc(-40.0) Haruhi(+44.0) 學習個煎包麻將(-13.0) 小手冰凉(+9.0) 样例模仿 tenhou
+	//先输出自己的位次和ID以及得点。剩余再依次从高到低输出
 	string path;
 	fstream f;
 
@@ -119,7 +120,7 @@ void Mahjong::Personal_Game_Statistics()
 		f.open(path, ios::app);
 
 		f << i + 1 << "位 ";
-		f << dogs[i]; //先输出自己的位次和ID以及得点。剩余再依次从高到低输出
+		f << dogs[i]; 
 
 		for (int j = 0; j < 4; j++)
 			if (j == i) continue;
@@ -145,15 +146,14 @@ void Mahjong::Personal_Technical_Statistics(string &ID)
 	char one_line[MAXLEN];
 	int rank[MAXGAME];
 
-	int top = 0, last = 0, liandui = 0;
-	double toprate = 0.0, lastrate = 0.0, lianduirate = 0.0;
+	int top = 0, last = 0, liandui = 0, sumrank = 0;
+	double toprate = 0.0, lastrate = 0.0, lianduirate = 0.0, avgrank = 0.0;
 	//double totalscore = 0.0, average = 0.0; 平均得点 to be done
 
 	int i;
 	for (i = 0; f.getline(one_line, MAXLEN); i++) //不断获取一行输入
 	{
-		 // 每行的第一个字节是顺位
-		rank[i]= one_line[0] - '0';
+		rank[i]= one_line[0] - '0';//每行的第一个字节是顺位
 		memset(one_line, 0, sizeof(one_line));
 	}
 	int len = i;
@@ -169,16 +169,19 @@ void Mahjong::Personal_Technical_Statistics(string &ID)
 		else if (rank[i] == 4) {
 			last++; 
 		}
+		sumrank += rank[i];
 	}
 
 	toprate = (double)top / len;
 	lianduirate = (double)liandui / len;
 	lastrate = (double)last / len;
+	avgrank = (double)sumrank / len;
 
 	cout.setf(ios::fixed);
 	cout << "top 率: " << fixed << setprecision(3) << toprate << " ";
 	cout << "连对率：" << fixed << setprecision(3) << lianduirate << " ";
 	cout << "末位率：" << fixed << setprecision(3) << lastrate << " ";
+	cout << "平均顺位：" << fixed << setprecision(3) << avgrank << " " << endl;
 	
 	f.close();
 }
