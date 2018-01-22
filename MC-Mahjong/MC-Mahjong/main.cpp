@@ -9,7 +9,9 @@ int main()
 	string input;
 	stringstream ss;
 	while (1) {
-		ss.clear();
+		// to be done：封装成两个函数：1. 输入比赛 2. 某位选手的技术统计
+
+		/*ss.clear();
 
 		getline(cin, input);
 		ss << input; // 1. 获取一行输入
@@ -27,10 +29,14 @@ int main()
 		g.WriteResult();
 
 		// 4. 遍历查找四个人，在 ID.txt 后追加比赛信息
-		g.Personal_Game_Statistics();
-
+		g.Personal_Game_Statistics(); */  
+		
+		// 以上是输入比赛
+		// 以下是对特定选手的技术统计
 		// 5. 根据 ID.txt 统计 一二三四位率，top，last，连对率，平均顺位，平均得点。（等等）
-		string name = "yuyu";
+		string name;
+		cin >> name;
+		Mahjong g;
 		g.Personal_Technical_Statistics(name);
 	}
 	return 0;
