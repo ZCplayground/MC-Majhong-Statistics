@@ -1,4 +1,5 @@
 #pragma once
+// 单独编译并使用 对面麻数据进行粗处理
 #include<fstream>
 #include<iostream>
 #include<string>
@@ -6,6 +7,11 @@
 
 enum Status { ID, sticks, L1, L22 };
 
+struct Dog {  // 有狗打麻
+	string ID;
+	int stick; // 点棒
+	double score; // 得点
+};
 using namespace std;
 
 void process1()
@@ -22,12 +28,15 @@ void process1()
 	char c;
 	Status status = ID;
 
+	string str;
+	stringstream stream;
+
 	while ((c = getchar()) != EOF)
 	{
 		if (c == '-')
 		{
-			string str;
-			stringstream stream;
+			stream.clear();
+			stream.str("");
 			stream << c;
 			str = stream.str();
 
@@ -42,8 +51,8 @@ void process1()
 			continue; //跳过空白符
 		else if (status == ID && (c < 0 || isalpha(c)))
 		{
-			string str;
-			stringstream stream;
+			stream.clear();
+			stream.str("");
 			stream << c;
 			str = stream.str();
 
@@ -56,8 +65,8 @@ void process1()
 			putchar(' ');
 			putchar(c);
 			out << " ";
-			string str;
-			stringstream stream;
+			stream.clear();
+			stream.str("");
 			stream << c;
 			str = stream.str();
 			out << str;
@@ -68,8 +77,8 @@ void process1()
 			status = L1;
 			putchar(c);
 			out << " ";
-			string str;
-			stringstream stream;
+			stream.clear();
+			stream.str("");
 			stream << c;
 			str = stream.str();
 			out << str;
@@ -77,8 +86,8 @@ void process1()
 		else if (status == sticks && (c >= '0'&&c <= '9'))
 		{
 			putchar(c);
-			string str;
-			stringstream stream;
+			stream.clear();
+			stream.str("");
 			stream << c;
 			str = stream.str();
 			out << str;
@@ -89,8 +98,8 @@ void process1()
 			putchar(' ');
 			putchar(c);
 			out << " ";
-			string str;
-			stringstream stream;
+			stream.clear();
+			stream.str("");
 			stream << c;
 			str = stream.str();
 			out << str;
@@ -99,8 +108,8 @@ void process1()
 		{
 			status = L1;
 			putchar(c);
-			string str;
-			stringstream stream;
+			stream.clear();
+			stream.str("");
 			stream << c;
 			str = stream.str();
 			out << str;
@@ -109,8 +118,8 @@ void process1()
 		{
 			status = L22;
 			putchar(c);
-			string str;
-			stringstream stream;
+			stream.clear();
+			stream.str("");
 			stream << c;
 			str = stream.str();
 			out << str;
@@ -120,8 +129,8 @@ void process1()
 			status = sticks;
 			putchar(c);
 			putchar(' ');
-			string str;
-			stringstream stream;
+			stream.clear();
+			stream.str("");
 			stream << c;
 			str = stream.str();
 			out << str;
@@ -131,15 +140,8 @@ void process1()
 	out.close();
 }
 
-struct Dog {  // 有狗打麻
-	string ID;
-	int stick; // 点棒
-	double score; // 得点
-};
-
 void process2()
 {
-
 	// 处理原始面麻数据
 	// 输入：只有三个人的名字和点棒 
 	// 输入样例： 畅畅 49200 川普 9000 yuyu 15500

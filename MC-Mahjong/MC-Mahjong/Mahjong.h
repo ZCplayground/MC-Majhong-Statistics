@@ -177,6 +177,7 @@ void Mahjong::Personal_Technical_Statistics(string &ID)
 	lastrate = (double)last / len;
 	avgrank = (double)sumrank / len;
 
+	// 标准输出
 	cout.setf(ios::fixed);
 	cout << "总场次: " << len << " ";
 	cout << "top 率: " << fixed << setprecision(3) << toprate << " ";
@@ -184,6 +185,7 @@ void Mahjong::Personal_Technical_Statistics(string &ID)
 	cout << "末位率：" << fixed << setprecision(3) << lastrate << " ";
 	cout << "平均顺位：" << fixed << setprecision(3) << avgrank << " " << endl << endl;
 	
+	// txt 文件
 	fstream file;
 	file.open("技术统计.txt", ios::app);
 	file << ID << endl;
@@ -192,7 +194,11 @@ void Mahjong::Personal_Technical_Statistics(string &ID)
 	file << "连对率：" << fixed << setprecision(3) << lianduirate << " ";
 	file << "末位率：" << fixed << setprecision(3) << lastrate << " ";
 	file << "平均顺位：" << fixed << setprecision(3) << avgrank << " " << endl << endl;
+	file.close();
+
+	// Markdown 格式
+	file.open("技术统计.md", ios::app);
+	
 
 	f.close();
-	file.close();
 }

@@ -2,14 +2,13 @@
 #include<string>
 #include<sstream>
 #include"Mahjong.h"
-
 int main()
 {
 	// 样例：畅畅 29000  yuyu 54300  初始 -3000  L22 19700
 	string input;
 	stringstream ss;
 	while (1) {
-		// to be done：封装成两个函数：1. 输入比赛 2. 某位选手的技术统计
+		// TODO：封装成两个函数：1. 输入比赛 2. 某位选手的技术统计
 
 		ss.clear();
 
@@ -31,11 +30,13 @@ int main()
 		// 4. 遍历查找四个人，在 ID.txt 后追加比赛信息
 		g.Personal_Game_Statistics();  
 		
-		// 以上是输入比赛
-		// 以下是对特定选手的技术统计
+		
+		// 以上是输入比赛/*~~~~~~~~~~~~~~~~~~~ 分割线 ~~~~~~~~~~~~~~~~~~~~~~~~~*/// 以下是对特定选手的技术统计
+		
 		// 5. 根据 ID.txt 统计 一二三四位率，top，last，连对率，平均顺位，平均得点。（等等）
 		string name;
 		cin >> name;
+		// TODO: 保存所有选手ID 的文件，自动统计
 		Mahjong g;
 		g.Personal_Technical_Statistics(name);
 	}
