@@ -198,7 +198,13 @@ void Mahjong::Personal_Technical_Statistics(string &ID)
 
 	// Markdown 格式
 	file.open("技术统计.md", ios::app);
-	
+	file << "ID|总场次|top率|连对率|末位率|平均顺位" << endl;
+	file << "---|---|---|---|---|---" << endl;
+	file << ID << " | " << len << " | "
+		<< fixed << setprecision(3) << toprate << " | "
+		<< fixed << setprecision(3) << lianduirate << " | "
+		<< fixed << setprecision(3) << lastrate << " | "
+		<< fixed << setprecision(3) << avgrank << " " << endl;
 
 	f.close();
 }
